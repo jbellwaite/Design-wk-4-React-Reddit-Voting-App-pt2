@@ -1,42 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Ticket extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      voteTotal: 0
-    };
-    this.handleClickUp = this.handleClickUp.bind(this);
-    this.handleClickDown = this.handleClickDown.bind(this);
-  }
+function Ticket(props) {
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     voteTotal: 0
+  //   };
+  //   this.handleClickUp = this.handleClickUp.bind(this);
+  //   this.handleClickDown = this.handleClickDown.bind(this);
+  // }
+  //
+  // handleClickUp(){
+  //   let newVoteUp = this.state.voteTotal+=1;
+  //   this.setState({voteTotal: newVoteUp});
+  // }
+  //
+  // handleClickDown(){
+  //   let newVoteDown = this.state.voteTotal-=1;
+  //   this.setState({voteTotal: newVoteDown});
+  // }
 
-  handleClickUp(){
-    let newVoteUp = this.state.voteTotal+=1;
-    this.setState({voteTotal: newVoteUp});
-  }
-
-  handleClickDown(){
-    let newVoteDown = this.state.voteTotal-=1;
-    this.setState({voteTotal: newVoteDown});
-  }
-
-  render(){
     return (
       <div>
-        <h3>{this.props.location} - {this.props.names}</h3>
-        <p><em>{this.props.issue}</em></p>
+        <h3>{props.location} - {props.names}</h3>
+        <p><em>{props.issue}</em></p>
         <button onClick={this.handleClickUp}>UpVote</button><span>   </span><button onClick={this.handleClickDown}>DownVote</button>
-        <p>{this.state.voteTotal}</p>
+        <p>{props.voteTotal}</p>
         <hr/>
       </div>
     );
-  }
 }
 
 Ticket.propTypes = {
-  names: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
+  names: PropTypes.string,
+  location: PropTypes.string,
   issue: PropTypes.string,
 };
 
