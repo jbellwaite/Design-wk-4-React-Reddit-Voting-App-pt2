@@ -2,42 +2,23 @@ import React from 'react';
 import Ticket from './Ticket';
 import PropTypes from 'prop-types';
 
-class TicketList extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      voteTotal: 0
-    };
-    this.handleClickUp = this.handleClickUp.bind(this);
-    this.handleClickDown = this.handleClickDown.bind(this);
-  }
+function TicketList(props){
 
-  handleClickUp(){
-    let newVoteUp = this.setState.voteTotal+=1;
-    this.setState({voteTotal: newVoteUp});
-  }
+  return (
+    <div>
+      <hr/>
+      {props.ticketList.map((ticket) =>
+        <Ticket names={ticket.names}
+          location={ticket.location}
+          issue={ticket.issue}
+          voteTotal= {ticket.voteTotal}
+          onUpVote = {ticket.onUpVote}
+          key={ticket.id}
+          />
+      )}
 
-  handleClickDown(){
-    let newVoteDown = this.setState.voteTotal-=1;
-    this.setState({voteTotal: newVoteDown});
-  }
-
-  render(){
-    return (
-      <div>
-        <hr/>
-        <Ticket voteTotal={this.state.voteTotal} />
-        {this.props.ticketList.map((ticket) =>
-            <Ticket names={ticket.names}
-              location={ticket.location}
-              issue={ticket.issue}
-              voteTotal= {ticket.voteTotal}
-              key={ticket.id}/>
-        )}
-
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 TicketList.propTypes = {
